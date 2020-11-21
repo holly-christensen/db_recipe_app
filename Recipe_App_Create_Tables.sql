@@ -59,7 +59,8 @@ create table Recipe_appliance (
 drop table if exists Ingredient;
 create table Ingredient (
 	ingredient_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    ingredient_name VARCHAR(50) NOT NULL UNIQUE
+    ingredient_name VARCHAR(50) NOT NULL UNIQUE,
+    price DOUBLE PRECISION(5,2) NOT NULL DEFAULT 0.00
 );
 
 drop table if exists Recipe_ingredient;
@@ -101,94 +102,19 @@ drop table if exists Save;
 create table Save (
 	user_id INT,
     recipe_id INT,
+    date_liked DATETIME NOT NULL,
     CONSTRAINT save_fk_user FOREIGN KEY (user_id) REFERENCES User (user_id),
     CONSTRAINT save_fk_recipe FOREIGN KEY (recipe_id) REFERENCES Recipe (recipe_id)
 );
 
 
-INSERT INTO User (first_name, last_name, username, email, password, description, university) VALUES 
-('Amanda', 'Bell', 'amandabell', 'bell.ama@northeastern.edu', 'reallysecurepassword', 
-'The first user in the database! Lover of database design and cooking :)', 'Northeastern'),
-('Noah', 'Fleischmann', 'noahfleischmann', 'noah@northeastern.edu', 'supersecure', 
-'NOT ENOUGH BUTTER.', 'Northeastern'),
-('Jaqueline', 'Daniel', 'jaquelinedaniel', 'daniel.jac@northeastern.edu', 'passwordpassword', 
-NULL, 'Northeastern'),
-('Holly', 'Christensen', 'hollyc', 'christensen.h@northeastern.edu', 'nicepassword', 
-'Databases are cool?', 'Northeastern');
-
-select * from user;
-
-INSERT INTO Appliance (appliance_name) VALUES
-("blender"),
-("toaster"),
-("oven"),
-("stove"),
-("microwave"),
-("cutting board"),
-("knife"),
-("spatula"),
-("whisk"),
-("stand mixer"),
-("saucepan"),
-("cast iron skillet");
-
-
-INSERT INTO Tag (tag_name) VALUES
-("vegan"),
-("vegetarian"),
-("thai"),
-("paleo"),
-("asian"),
-("gluten-free"),
-("dairy-free"),
-("indian"),
-("mexican"),
-("mediterranean"),
-("breakfast"),
-("lunch"),
-("dinner"),
-("snack"),
-("dessert"),
-("mediterranean");
-
-
-INSERT INTO Ingredient (ingredient_name) VALUES
-("coconut oil"),
-("onion"),
-("butternut squash"),
-("ginger"),
-("red curry paste"),
-("yellow curry powder"),
-("coconut milk"),
-("vegetable broth"),
-("maple syrup"),
-("baby spinach"),
-("lime juice"),
-("cilantro"),
-("onion"),
-("spaghetti squash"),
-("zucchini"),
-("carrot"),
-("bell pepper"),
-("cashews"),
-("coconut aminos"),
-("garlic cloves"),
-("medjool dates"),
-("ground flaxseed"),
-("blanched almond flour"),
-("arrowroot powder"),
-("ground flaxseed"),
-("baking soda"),
-("salt"),
-("nut butter"),
-("applesauce"),
-("lemon juice"),
-("vanilla extract"),
-("blueberries");
-
-
-
-
+drop table if exists Pantry;
+create table Pantry (
+	user_id INT,
+    ingredient_id INT,
+    CONSTRAINT pantry_fk_user FOREIGN KEY (user_id) REFERENCES User (user_id),
+    CONSTRAINT pantry_fk_ingredient FOREIGN KEY (ingredient_id) REFERENCES Ingredient (ingredient_id)
+);
 
 
 
