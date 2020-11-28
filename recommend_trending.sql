@@ -4,11 +4,7 @@ use recipeapp;
 
 drop procedure if exists recommendTrending;
 delimiter //
-create procedure recommendTrending
-(
-	-- in patient_name_param varchar(255)
-    -- params here
-)
+create procedure recommendTrending()
 begin
 	declare start_date_var datetime;
 	select DATE_SUB(NOW(), interval 2 week) 

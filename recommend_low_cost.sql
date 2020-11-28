@@ -14,7 +14,7 @@ DETERMINISTIC
 BEGIN
     DECLARE total_cost_var DOUBLE PRECISION(5,2);
     -- calculate the price for the given recipe, including ingredients the user already has
-    select sum(price)
+    select sum(unit_price)
     from Recipe_Ingredient 
     left join Ingredient using (ingredient_id) 
     where recipe_id = recipe_id_param

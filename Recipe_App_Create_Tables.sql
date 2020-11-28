@@ -3,9 +3,7 @@ drop database if exists recipeapp;
 create database recipeapp;
 
 use recipeapp;
-show tables;
 
-select * from user;
 
 drop table if exists User;
 create table User (
@@ -60,7 +58,7 @@ drop table if exists Ingredient;
 create table Ingredient (
 	ingredient_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     ingredient_name VARCHAR(50) NOT NULL UNIQUE,
-    price DOUBLE PRECISION(5,2) NOT NULL DEFAULT 0.00
+    unit_price DOUBLE PRECISION(5,2) NOT NULL DEFAULT 0.00
 );
 
 drop table if exists Recipe_ingredient;
@@ -94,6 +92,7 @@ create table Rating (
 	user_id INT,
     recipe_id INT,
     rating INT NOT NULL,
+    rating_date DATETIME NOT NULL,
     CONSTRAINT rating_fk_user FOREIGN KEY (user_id) REFERENCES User (user_id),
     CONSTRAINT rating_fk_recipe FOREIGN KEY (recipe_id) REFERENCES Recipe (recipe_id)
 );
