@@ -43,7 +43,7 @@ user_id_arg INT
 )
 begin
 
-select distinct r.recipe_id, r.title, r.photo, r.minutes, r.servings, r.instructions
+select distinct r.recipe_id, r.title, r.photo, r.description
 from Recipe r join Recipe_tag rt
 on (r.recipe_id = rt.recipe_id)
 join Tag t
@@ -66,4 +66,4 @@ end //
 delimiter ;
 
 
-call recommend_by_tag('4');
+call recommend_by_tag(4);
