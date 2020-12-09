@@ -6,7 +6,7 @@ delimiter //
 
 create function get_n_most_saved_tag
 (
-username_arg varchar(50),
+user_id_arg varchar(50),
 n_most_saved int
 )
 returns varchar(50)
@@ -24,7 +24,7 @@ begin
 	on (rt.recipe_id = r.recipe_id)
 	join Tag t
 	using(tag_id)
-	where u.username = username_arg
+	where u.user_id = user_id_arg
 	group by tag_name
 	order by count(tag_name) desc
 	limit 1
@@ -39,15 +39,9 @@ delimiter //
 
 create procedure recommend_by_tag
 (
-username_arg varchar(50)
+user_id_arg INT
 )
 begin
-
-declare user_id_var int;
-
-select user_id into user_id_var
-from User u
-where username_arg = u.username;
 
 select distinct r.recipe_id, r.title, r.photo, r.minutes, r.servings, r.instructions
 from Recipe r join Recipe_tag rt
@@ -59,12 +53,12 @@ where r.recipe_id not in
 	(select user_id, recipe_id, count(recipe_id)
 	from Save
 	group by user_id, recipe_id
-	having Save.user_id = user_id_var 
+	having Save.user_id = user_id_arg 
     and count(recipe_id) >= 1)tmp)
-and ((t.tag_name = get_n_most_saved_tag(username_arg, 1)
-or t.tag_name = get_n_most_saved_tag(username_arg, 2)
-or t.tag_name = get_n_most_saved_tag(username_arg, 3))
-and r.user_id != user_id_var)
+and ((t.tag_name = get_n_most_saved_tag(user_id_arg, 1)
+or t.tag_name = get_n_most_saved_tag(user_id_arg, 2)
+or t.tag_name = get_n_most_saved_tag(user_id_arg, 3))
+and r.user_id != user_id_arg)
 group by recipe_id, title, tag_name
 limit 5;
 end //
@@ -72,10 +66,4 @@ end //
 delimiter ;
 
 
-call recommend_by_tag('hollyc');
-
-select * from Recipe_tag where recipe_id = 3;
-
-select * from tag;
-
-
+call recommend_by_tag('4');

@@ -19,7 +19,6 @@ BEGIN
     from Recipe_Ingredient 
     left join Ingredient using (ingredient_id) 
     where recipe_id = recipe_id_param
-    and optional =  0
     and ingredient_id not in (
 		select ingredient_id 
         from Pantry 
@@ -44,11 +43,12 @@ begin
         photo,  
         estimatedRecipeCost(user_id_param, recipe_id) as 'estimated_cost'
     from Recipe 
+    where estimatedRecipeCost(user_id_param, recipe_id) is not null
     order by estimatedRecipeCost(user_id_param, recipe_id)
     limit 5;
 
 end //
 DELIMITER ;
 
-call recommendLowCost(4);
+call recommendLowCost(34);
 
