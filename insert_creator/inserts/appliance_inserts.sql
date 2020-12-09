@@ -1,4 +1,4 @@
-INSERT INTO Tag (tag_name) VALUES 
+INSERT INTO Appliance (appliance_name) VALUES 
 	("knife"),
 	("skillet"),
 	("oven"),

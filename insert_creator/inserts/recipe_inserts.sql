@@ -1,3 +1,5 @@
+
+
 INSERT INTO Recipe 
 (recipe_id, 
 title,
@@ -228,7 +230,7 @@ user_id) VALUES
 30,
 2.0,
 "Add the onions into a skillet with the olive oil over medium heat. Saute for a few minutes, and then add in the diced tomatoes, chicken stock, olives, artichoke hearts and garlic. Season with a pinch of salt and pepper. Stir and simmer over low heat for 15 minutes, stirring occasionally.  Add the cooked pasta to the skillet and stir to combine with the sauce. Mix in the pesto. Toss in the feta and top with the pine nuts.",
-106),
+78),
 
 (28,
 "Spinach with Tahini Sauce",

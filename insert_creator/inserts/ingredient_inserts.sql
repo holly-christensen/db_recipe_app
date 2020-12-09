@@ -1,3 +1,5 @@
+select * from ingredient;
+
 INSERT INTO Ingredient (ingredient_name) VALUES
 ('dried black eyed peas'),
 ('thick cut bacon'),
