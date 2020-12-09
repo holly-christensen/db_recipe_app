@@ -4,32 +4,23 @@ use recipedb;
 drop procedure if exists people_who_like_this_recipe_also_like;
 delimiter //
 create procedure people_who_like_this_recipe_also_like
- ( in username_param varchar(50),
+ ( in user_id_param varchar(50),
    in recipe_id_param int)
 
 begin
- 
- declare user_id_var int;
- 
- select user_id
- into user_id_var
- from user
- where username = username_param;
- 
-select 
-recipe_id_param;
 
-select recipe_id
-from Save
-where user_id in 
-(select user_id
-from Save join user using (user_id)
-where user_id != user_id_var
+select recipe_id, title, description, photo
+from Save s left join Recipe r using (recipe_id)
+where s.user_id in 
+(select b.user_id
+from Save b join user using (user_id)
+where user_id != user_id_param
 and recipe_id = recipe_id_param)
 and recipe_id != recipe_id_param
 group by recipe_id
-order by count(recipe_id);
+order by count(recipe_id) desc
+limit 10;
 
 end//
 
-call people_who_like_this_recipe_also_like(5, 2);
+call people_who_like_this_recipe_also_like(72, 10);
