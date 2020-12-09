@@ -1,15 +1,12 @@
+use recipedb;
+select * from user;
 INSERT INTO User 
         (first_name,
         last_name, 
         username, 
         email, 
         password,  
-        university_id) VALUESINSERT INTO User 
-        (first_name,
-        last_name, 
-        username, 
-        email, 
-        password,  
+        description,
         university_id) VALUES
 ("Jeralee","Jouhning","jjouhning1","jjouhning1@people.com.cn","c82ce3RuKPvA","Universal coherent product",1650),
 ("Vivyan","Coll","vcoll2","vcoll2@themeforest.net","hBNJsRep","Quality-focused web-enabled hub",2222),

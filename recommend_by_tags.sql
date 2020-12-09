@@ -58,14 +58,14 @@ where r.recipe_id not in
 (select recipe_id from
 	(select user_id, recipe_id, count(recipe_id)
 	from Save
-	group by recipe_id
+	group by user_id, recipe_id
 	having Save.user_id = user_id_var 
     and count(recipe_id) >= 1)tmp)
 and ((t.tag_name = get_n_most_saved_tag(username_arg, 1)
 or t.tag_name = get_n_most_saved_tag(username_arg, 2)
 or t.tag_name = get_n_most_saved_tag(username_arg, 3))
 and r.user_id != user_id_var)
-group by title, tag_name
+group by recipe_id, title, tag_name
 limit 5;
 end //
 
@@ -73,5 +73,9 @@ delimiter ;
 
 
 call recommend_by_tag('hollyc');
+
+select * from Recipe_tag where recipe_id = 3;
+
+select * from tag;
 
 
