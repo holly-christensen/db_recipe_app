@@ -1,4 +1,4 @@
-use recipeapp;
+use recipedb;
 
 drop function if exists get_n_most_saved_tag;
 
@@ -56,10 +56,11 @@ join Tag t
 using(tag_id)
 where r.recipe_id not in
 (select recipe_id from
-(select user_id, recipe_id, count(recipe_id)
-from Save
-group by recipe_id
-having Save.user_id = user_id_var and count(recipe_id) >= 1)tmp)
+	(select user_id, recipe_id, count(recipe_id)
+	from Save
+	group by recipe_id
+	having Save.user_id = user_id_var 
+    and count(recipe_id) >= 1)tmp)
 and ((t.tag_name = get_n_most_saved_tag(username_arg, 1)
 or t.tag_name = get_n_most_saved_tag(username_arg, 2)
 or t.tag_name = get_n_most_saved_tag(username_arg, 3))
@@ -69,3 +70,8 @@ limit 5;
 end //
 
 delimiter ;
+
+
+call recommend_by_tag('hollyc');
+
+

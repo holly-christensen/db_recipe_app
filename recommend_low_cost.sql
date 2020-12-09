@@ -1,6 +1,6 @@
 -- stored procedure to create recommendations based on cost of additional ingredients the user would need to buy 
 
-use recipeapp;
+use recipedb;
 
 DROP FUNCTION IF EXISTS estimatedRecipeCost;
 DELIMITER //
@@ -45,8 +45,10 @@ begin
         estimatedRecipeCost(user_id_param, recipe_id) as 'estimated_cost'
     from Recipe 
     order by estimatedRecipeCost(user_id_param, recipe_id)
-    limit 15;
+    limit 5;
 
 end //
 DELIMITER ;
+
+call recommendLowCost(4);
 
