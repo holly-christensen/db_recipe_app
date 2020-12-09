@@ -1,0 +1,15 @@
+INSERT INTO Tag (tag_id, tag_name) VALUES 
+,
+	(0, "'pot'"),
+	(1, "'knife'"),
+	(2, "'skillet'"),
+	(3, "'oven'"),
+	(4, "'microwave'"),
+	(5, "'baking dish'"),
+	(6, "'saucepan'"),
+	(7, "'blender'"),
+	(8, "'whisk'"),
+	(9, "'spatula'"),
+	(10, "'mixer'"),
+	(11, "'sheet pan'"),
+	(12, "'stove'");
