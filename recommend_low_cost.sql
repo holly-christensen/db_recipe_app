@@ -45,10 +45,11 @@ begin
     from Recipe 
     where estimatedRecipeCost(user_id_param, recipe_id) is not null
     order by estimatedRecipeCost(user_id_param, recipe_id)
-    limit 5;
+    limit 9;
 
 end //
 DELIMITER ;
 
 call recommendLowCost(34);
+
 

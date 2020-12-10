@@ -60,7 +60,7 @@ or t.tag_name = get_n_most_saved_tag(user_id_arg, 2)
 or t.tag_name = get_n_most_saved_tag(user_id_arg, 3))
 and r.user_id != user_id_arg)
 group by recipe_id, title, tag_name
-limit 5;
+limit 9;
 end //
 
 delimiter ;

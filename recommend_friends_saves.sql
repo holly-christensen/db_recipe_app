@@ -1,3 +1,4 @@
+
 drop procedure if exists people_you_follow_also_like;
 
 delimiter //
@@ -18,10 +19,16 @@ begin
             where user_id = user_id_param) -- Shouldn't see recipes they've already saved
     group by r.recipe_id
     order by count(recipe_id) desc -- Order by most liked among their friends descending
-    limit 10;
+    limit 9;
 
 end //
 
 delimiter ;
 
-call people_you_follow_also_like(1);
+call people_you_follow_also_like(10);
+
+
+
+
+use recipedb;
+

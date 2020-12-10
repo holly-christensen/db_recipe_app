@@ -1,5 +1,4 @@
 select * from save;
-delete from save;
 
 INSERT INTO Save (user_id, recipe_id) VALUES
 (75, 20),

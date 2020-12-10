@@ -36,7 +36,7 @@ begin
 	from Recipe left join Rating using(recipe_id)
 	where rating_date > start_date_var
 	order by avgRating(recipe_id) desc
-	limit 5;
+	limit 9;
     
 end //
 delimiter ;
